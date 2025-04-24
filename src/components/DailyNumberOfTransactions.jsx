@@ -4,7 +4,7 @@ import { getDataAsArray } from "../../utils/helpers";
 import { DATA_SOURCE } from "../../utils/constants";
 import LineChart from "./charts/LineChart";
 
-function DailySales({ label }) {
+function DailyNumberOfTransactions({ label }) {
   const [orders, setOrders] = useState(null);
   const [selectedDateRange, setSelectedDateRange] = useState([1, 30]);
   const [selectedMonth, setSelectedMonth] = useState(4);
@@ -50,11 +50,14 @@ function DailySales({ label }) {
       if (
         new Date(item.Date).getMonth() + 1 === selectedMonth &&
         new Date(item.Date).getDate() >= selectedDateRange[0] &&
-        new Date(item.Date).getDate() <= selectedDateRange[1]
+        new Date(item.Date).getDate() <= selectedDateRange[1] &&
+        item.Qty > 0
       ) {
-        // Calculating the Total Number of Orders by Date
+        // Calculating the Total Number of Transactions by Date
         dailySales[item.Date] =
-          dailySales[item.Date] !== undefined ? ++dailySales[item.Date] : 0;
+          dailySales[item.Date] !== undefined
+            ? dailySales[item.Date] + parseInt(item.Qty)
+            : 0;
       }
     });
 
@@ -100,4 +103,4 @@ function DailySales({ label }) {
   );
 }
 
-export default DailySales;
+export default DailyNumberOfTransactions;

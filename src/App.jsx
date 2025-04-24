@@ -1,8 +1,15 @@
 import { Routes, Route, Navigate } from "react-router";
 import DailySales from "./components/DailySales";
 import MonthlySales from "./components/MonthlySales";
+import DailyNumberOfTransactions from "./components/DailyNumberOfTransactions";
+import MonthlyNumberOfTransactions from "./components/MonthlyNumberOfTransactions";
+
 import DailyRevenueTrends from "./components/DailyRevenueTrends";
 import MonthlyRevenueTrends from "./components/MonthlyRevenueTrends";
+
+MonthlyNumberOfTransactions;
+
+// This component is responsible for managing the Application's Routes.
 
 const App = () => {
   return (
@@ -18,11 +25,13 @@ const App = () => {
       />
       <Route
         path="/daily-number-of-transactions"
-        element={<DailySales label={"Number of Transactions"} />}
+        element={<DailyNumberOfTransactions label={"Number of Transactions"} />}
       />
       <Route
         path="/monthly-number-of-transactions"
-        element={<MonthlySales label={"Number of Transactions"} />}
+        element={
+          <MonthlyNumberOfTransactions label={"Number of Transactions"} />
+        }
       />
       <Route
         path="/daily-revenue-trends"

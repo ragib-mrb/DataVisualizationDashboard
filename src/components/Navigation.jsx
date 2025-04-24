@@ -1,5 +1,7 @@
 import { NavLink } from "react-router";
 
+// This component is responsible for managing the Application's Navigation.
+
 const Navigation = () => {
   return (
     <div className="list-group">

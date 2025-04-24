@@ -53,6 +53,7 @@ function DailyRevenueTrends({ label }) {
         new Date(item.Date).getDate() <= selectedDateRange[1] &&
         item.Qty > 0
       ) {
+        // Calculating the Total Revenue by Date
         dailySales[item.Date] =
           dailySales[item.Date] !== undefined ? item.Amount * item.Qty : 0;
       }

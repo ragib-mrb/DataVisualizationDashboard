@@ -9,7 +9,7 @@ import {
   PIE_BORDER_COLOR,
 } from "../../utils/constants";
 
-function MonthlySales({ label }) {
+function MonthlyNumberOfTransactions({ label }) {
   const [products, setProducts] = useState(null);
   const [chartData, setChartData] = useState({
     labels: [],
@@ -35,9 +35,11 @@ function MonthlySales({ label }) {
       if (currentMonth === undefined) {
         return false;
       }
-      // Calculating the Total Number of Orders by Month
+      // Calculating the Total Number of Transactions by Month
       dailySales[currentMonth] =
-        dailySales[currentMonth] !== undefined ? ++dailySales[currentMonth] : 0;
+        dailySales[currentMonth] !== undefined
+          ? dailySales[currentMonth] + parseInt(item.Qty)
+          : 0;
     });
 
     setChartData({
@@ -57,4 +59,4 @@ function MonthlySales({ label }) {
   return <PieChart chartData={chartData} />;
 }
 
-export default MonthlySales;
+export default MonthlyNumberOfTransactions;

@@ -35,7 +35,7 @@ function MonthlyRevenueTrends({ label }) {
       if (currentMonth === undefined) {
         return false;
       }
-
+      // Calculating the Total Revenue by Month
       dailySales[currentMonth] =
         dailySales[currentMonth] !== undefined
           ? dailySales[currentMonth] + item.Amount * item.Qty
