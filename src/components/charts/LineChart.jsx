@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
+import Heading from "../Heading";
 import Navigation from "../Navigation";
 import SelectDate from "../SelectDate";
 import SelectMonth from "../SelectMonth";
@@ -42,6 +43,7 @@ const LineChart = ({
 }) => {
   return (
     <div className="container d-grid gap-0 row-gap-3 mt-5">
+      <Heading />
       <div className="row">
         <div className="col-3">
           <Navigation />
