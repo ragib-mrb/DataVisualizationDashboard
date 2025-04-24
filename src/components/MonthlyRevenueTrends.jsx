@@ -9,7 +9,7 @@ import {
   PIE_BORDER_COLOR,
 } from "../../utils/constants";
 
-function MonthlySales({ label }) {
+function MonthlyRevenueTrends({ label }) {
   const [products, setProducts] = useState(null);
   const [chartData, setChartData] = useState({
     labels: [],
@@ -35,8 +35,11 @@ function MonthlySales({ label }) {
       if (currentMonth === undefined) {
         return false;
       }
+
       dailySales[currentMonth] =
-        dailySales[currentMonth] !== undefined ? ++dailySales[currentMonth] : 0;
+        dailySales[currentMonth] !== undefined
+          ? dailySales[currentMonth] + item.Amount * item.Qty
+          : 0;
     });
 
     setChartData({
@@ -56,4 +59,4 @@ function MonthlySales({ label }) {
   return <PieChart chartData={chartData} />;
 }
 
-export default MonthlySales;
+export default MonthlyRevenueTrends;

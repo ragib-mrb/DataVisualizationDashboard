@@ -5,6 +5,7 @@ const Navigation = () => {
     <div className="list-group">
       <NavLink
         to="/daily-sales"
+        reloadDocument
         className="list-group-item list-group-item-action"
       >
         Daily Sales
@@ -12,23 +13,41 @@ const Navigation = () => {
 
       <NavLink
         to="/monthly-sales"
+        reloadDocument
         className="list-group-item list-group-item-action"
       >
         Monthly Sales
       </NavLink>
 
       <NavLink
-        to="/number-of-transactions"
+        to="/daily-number-of-transactions"
+        reloadDocument
         className="list-group-item list-group-item-action"
       >
-        Number of Transactions
+        Number of Transactions (Daily)
       </NavLink>
-      {/* <NavLink
-        to="/revenue-trends"
+      <NavLink
+        to="/monthly-number-of-transactions"
+        reloadDocument
         className="list-group-item list-group-item-action"
       >
-        Revenue Trends
-      </NavLink> */}
+        Number of Transactions (Monthly)
+      </NavLink>
+
+      <NavLink
+        to="/daily-revenue-trends"
+        reloadDocument
+        className="list-group-item list-group-item-action"
+      >
+        Revenue Trends (Daily)
+      </NavLink>
+      <NavLink
+        to="/monthly-revenue-trends"
+        reloadDocument
+        className="list-group-item list-group-item-action"
+      >
+        Revenue Trends (Monthly)
+      </NavLink>
     </div>
   );
 };

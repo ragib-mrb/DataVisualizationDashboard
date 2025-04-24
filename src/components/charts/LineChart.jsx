@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -44,16 +43,15 @@ const LineChart = ({
   return (
     <div className="container d-grid gap-0 row-gap-3 mt-5">
       <div className="row">
-        <div className="col-2">
+        <div className="col-3">
           <Navigation />
         </div>
         <div className="col-8">
           <Line options={options} data={chartData} />
         </div>
-        <div className="col-2"></div>``
       </div>
       <div className="row">
-        <div className="col-2"></div>
+        <div className="col-3"></div>
         <div className="col-4">
           <SelectMonth onSelectedMonth={onSelectedMonth} />
         </div>
@@ -64,7 +62,6 @@ const LineChart = ({
             onSelectedDateRange={onSelectedDateRange}
           />
         </div>
-        <div className="col-2"></div>
       </div>
     </div>
   );
