@@ -10,7 +10,7 @@
  - Clone Repo: `git clone https://github.com/ragib-mrb/DataVisualizationDashboard.git`
  -  Navigate to project directory: `cd DataVisualizationDashboard`
  - Install dependencies: `npm i`
- - Run Application `npm run dev`
+ - Run Application: `npm run dev`
 
 **Screenshots**
 
