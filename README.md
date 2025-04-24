@@ -1,3 +1,4 @@
+
 # Data Visualization Dashboard
 
 **System Requirements**
@@ -7,8 +8,9 @@
 
 **Setup Guide**
  - Clone Repo: `git clone https://github.com/ragib-mrb/DataVisualizationDashboard.git`
- - `npm i`
- - `npm run dev`
+ -  Navigate to project directory: `cd DataVisualizationDashboard`
+ - Install dependencies: `npm i`
+ - Run Application `npm run dev`
 
 **Screenshots**
 
