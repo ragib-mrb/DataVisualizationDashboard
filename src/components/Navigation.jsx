@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 
 const Navigation = () => {
   return (
@@ -16,6 +16,19 @@ const Navigation = () => {
       >
         Monthly Sales
       </NavLink>
+
+      <NavLink
+        to="/number-of-transactions"
+        className="list-group-item list-group-item-action"
+      >
+        Number of Transactions
+      </NavLink>
+      {/* <NavLink
+        to="/revenue-trends"
+        className="list-group-item list-group-item-action"
+      >
+        Revenue Trends
+      </NavLink> */}
     </div>
   );
 };

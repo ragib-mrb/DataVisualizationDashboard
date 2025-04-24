@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { labels } from "../../utils/labels";
+import { MONTHS } from "../../utils/constants";
 
 function daysInMonth(month) {
   return new Date(2022, parseInt(month), 0).getDate();
@@ -31,8 +31,8 @@ const SelectMonth = ({ onSelectedMonth }) => {
         value={month}
         onChange={handleMonthSelection}
       >
-        {labels.map((label) => {
-          return <MenuItem value={label.id}>{label.name}</MenuItem>;
+        {MONTHS.map((month) => {
+          return <MenuItem value={month.id}>{month.name}</MenuItem>;
         })}
       </Select>
     </FormControl>

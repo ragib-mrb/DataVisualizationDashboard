@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
-import { getDataAsArray } from "../../utils/parseData";
+import { getDataAsArray } from "../../utils/helpers";
 
 import Navigation from "./Navigation";
 

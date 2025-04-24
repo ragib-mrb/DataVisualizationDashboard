@@ -1,11 +1,9 @@
-import { useState } from "react";
-
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 
-const SelectDate = ({ date, marks, onSetSelectedDateRange }) => {
+const SelectDate = ({ date, marks, onSelectedDateRange }) => {
   const handleDateRange = (e, newRange) => {
-    onSetSelectedDateRange(newRange);
+    onSelectedDateRange(newRange);
   };
 
   return (

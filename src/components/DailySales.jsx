@@ -1,37 +1,19 @@
 import { useEffect, useState } from "react";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-
-import { getDataAsArray } from "../../utils/parseData";
-
-import Navigation from "./Navigation";
-import SelectDate from "./SelectDate";
-import SelectMonth from "./SelectMonth";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import { getDataAsArray } from "../../utils/helpers";
+import { DATA_SOURCE } from "../../utils/constants";
+import LineChart from "./charts/LineChart";
 
 function DailySales() {
-  const [products, setProducts] = useState(null);
-  const [selectedMonth, setselectedMonth] = useState(4);
+  const [orders, setOrders] = useState(null);
   const [selectedDateRange, setSelectedDateRange] = useState([1, 30]);
+  const [selectedMonth, setSelectedMonth] = useState(4);
+
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
+
   const [marks, setMarks] = useState([
     {
       value: 1,
@@ -42,68 +24,28 @@ function DailySales() {
       label: "30",
     },
   ]);
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [
-      {
-        label: "Daily Sales",
-        data: [],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-    ],
-  });
-  const [options, setOptions] = useState({
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Daily Sales",
-      },
-    },
-  });
 
   useEffect(() => {
     fetchData();
   }, []);
 
   useEffect(() => {
-    if (products) {
-      filteredItemByRange(products);
+    if (orders) {
+      filterItems(orders);
     }
   }, [selectedDateRange, selectedMonth]);
 
   const fetchData = async () => {
-    if (!products) {
-      const items = await getDataAsArray("../data-source/AmazonSaleReport.csv");
-      filteredItemByRange(items);
-      setProducts(items);
+    if (!orders) {
+      const items = await getDataAsArray(DATA_SOURCE);
+      filterItems(items);
+      setOrders(items);
     }
   };
 
-  const handleSelectedMonth = (month, dateRange) => {
-    setMarks([
-      {
-        value: dateRange[0],
-        label: dateRange[0],
-      },
-      {
-        value: dateRange[1],
-        label: dateRange[1],
-      },
-    ]);
-    setSelectedDateRange(dateRange);
-    setselectedMonth(month);
-  };
-
-  const handleSelectedDateRange = (dateRange) =>
-    setSelectedDateRange(dateRange);
-
-  const filteredItemByRange = (items) => {
+  const filterItems = (items) => {
     let dailySales = [];
+
     items.forEach((item) => {
       if (
         new Date(item.Date).getMonth() + 1 === selectedMonth &&
@@ -114,6 +56,7 @@ function DailySales() {
           dailySales[item.Date] !== undefined ? ++dailySales[item.Date] : 0;
       }
     });
+
     setChartData({
       labels: Object.keys(dailySales),
       datasets: [
@@ -127,34 +70,33 @@ function DailySales() {
     });
   };
 
+  const handleSelectedMonth = (month, dateRange) => {
+    console.log("one", month, dateRange);
+    setMarks([
+      {
+        value: dateRange[0],
+        label: dateRange[0],
+      },
+      {
+        value: dateRange[1],
+        label: dateRange[1],
+      },
+    ]);
+    setSelectedDateRange(dateRange);
+    setSelectedMonth(month);
+  };
+
+  const handleSelectedDateRange = (dateRange) =>
+    setSelectedDateRange(dateRange);
+
   return (
-    <>
-      <div className="container d-grid gap-0 row-gap-3 mt-5">
-        <div className="row">
-          <div className="col-2">
-            <Navigation />
-          </div>
-          <div className="col-8">
-            <Line options={options} data={chartData} />
-          </div>
-          <div className="col-2"></div>
-        </div>
-        <div className="row">
-          <div className="col-2"></div>
-          <div className="col-4">
-            <SelectMonth onSelectedMonth={handleSelectedMonth} />
-          </div>
-          <div className="col-4">
-            <SelectDate
-              date={selectedDateRange}
-              marks={marks}
-              onSetSelectedDateRange={handleSelectedDateRange}
-            />
-          </div>
-          <div className="col-2"></div>
-        </div>
-      </div>
-    </>
+    <LineChart
+      chartData={chartData}
+      marks={marks}
+      selectedDateRange={selectedDateRange}
+      onSelectedMonth={handleSelectedMonth}
+      onSelectedDateRange={handleSelectedDateRange}
+    />
   );
 }
 
